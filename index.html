@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="main">
+        <h1>Countdown</h1>
+       <div> <input type="date" id="date"> &nbsp;
+         <button onclick="birth()">Check</button>
+      </div>  <br>
+        <table width="400" align="center" cellpadding="5" border="1">
+
+            <tr>
+                <td>Months</td>
+                <td>Days</td>
+                <td>Hour</td>
+                <td>Minutes</td>
+                <td>Seconds</td>
+            </tr>
+            <tr>
+                <td id="month"></td>
+                <td id="day"></td>
+                <td id="hour"></td>
+                <td id="min"></td>
+                <td id="sec"></td>
+            </tr>
+        </table>
+    </div>
+    <script>
+        function birth() {
+            var birth = document.getElementById('date').value;
+            var birthDate = new Date(birth).getTime();
+            var now = new Date().getTime();
+
+            var totalSec = (birthDate - now) / 1000;
+
+            // console.log(remain)
+
+            var sec = Math.floor(totalSec) % 60
+            var min = Math.floor(totalSec / 60) % 60
+            var hour = Math.floor(totalSec / (60 * 60)) % 24
+            var day = Math.floor(totalSec / 3600 / 24)
+            var month = Math.floor(totalSec / 3600 / 24 / 30)
+
+            // document.getElementById('month').innerHTML = month 
+            document.getElementById('month').innerHTML = month
+            document.getElementById('day').innerHTML = day
+            document.getElementById('hour').innerHTML = hour
+            document.getElementById('min').innerHTML = min
+            document.getElementById('sec').innerHTML = sec
+        }
+        setInterval(birth, 1000)
+    </script>
+</body>
+
+</html>
